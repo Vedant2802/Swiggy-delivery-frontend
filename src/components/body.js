@@ -4,6 +4,8 @@
 import ResCard from "./resCard";
 import { useEffect, useState } from "react";
 import ShimmerUi from "./shimmer";
+import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // const arr = useState([]);
@@ -14,7 +16,7 @@ const Body = () => {
 
   // const setListOfRestaurants = arr[1];
 
-  const [searchText, setSearctext] = useState("");
+  const [searchText, setSearchtext] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
@@ -46,6 +48,10 @@ const Body = () => {
   // if (listOfRestaurants.length === 0) {
   //   return <ShimmerUi />;
   // }
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return <h1>"Looks like you are offline"</h1>;
+  }
   return listOfRestaurants?.length === 0 ? (
     <ShimmerUi />
   ) : (
@@ -56,7 +62,7 @@ const Body = () => {
             type="text"
             className="search-box"
             value={searchText}
-            onChange={(e) => setSearctext(e.target.value)}
+            onChange={(e) => setSearchtext(e.target.value)}
           />
           <button
             onClick={() => {
@@ -86,7 +92,12 @@ const Body = () => {
 
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <ResCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <ResCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
