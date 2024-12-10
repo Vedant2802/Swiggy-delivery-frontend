@@ -6,7 +6,7 @@ import { MENU_API } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
-function RestaurantMenu() {
+const RestaurantMenu = () => {
   // const [resInfo, setResinfo] = useState(null);
   // // passing an empty dependency array so that the use effect hook does not re renders every time
   // useEffect(() => {
@@ -17,6 +17,7 @@ function RestaurantMenu() {
   const resInfo = useRestaurantMenu(resId);
   console.log(">>>", resInfo);
   console.log("resId", resId);
+  const [showIndex, setShowIndex] = useState(null);
 
   // const fetchMenu = async () => {
   //   const data = await fetch(
@@ -48,8 +49,10 @@ function RestaurantMenu() {
   return resInfo === null ? (
     <ShimmerUi />
   ) : (
-    <div className="restaurant-menu">
-      <h1>{resInfo.cards[2].card.card.info.name}</h1>
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">
+        {resInfo.cards[2].card.card.info.name}
+      </h1>
       {/* <h1>{name.title}</h1> */}
       {/* <h2>{cuisines}</h2> */}
       {/* <ul>
@@ -57,16 +60,18 @@ function RestaurantMenu() {
           <li key={item.dish.info.id}>{item.dish.info.name}</li>
         ))}
       </ul> */}
-      {categories.map((category) => {
+      {categories.map((category, index) => {
         return (
           <RestaurantCategory
-            key={category?.card?.card?.itemCards?.card?.info?.id}
+            key={category?.card?.card?.title}
             data={category?.card?.card}
+            showItems={index === showIndex ? true : false}
+            setShowIndex={() => setShowIndex(index)}
           />
         );
       })}
     </div>
   );
-}
+};
 
 export default RestaurantMenu;
