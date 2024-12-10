@@ -42,7 +42,7 @@ import ShimmerUi from "./components/shimmer";
 // root.render(<HeadingComponent />);
 
 const Grocery = lazy(() => {
-  import("./components/Grocery");
+  return import("./components/Grocery");
 });
 
 const AppLayout = () => {

@@ -4,6 +4,7 @@ import ShimmerUi from "./shimmer";
 import { useParams } from "react-router";
 import { MENU_API } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 function RestaurantMenu() {
   // const [resInfo, setResinfo] = useState(null);
@@ -34,7 +35,15 @@ function RestaurantMenu() {
     resInfo?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards[1]?.card?.card
       ?.carousel;
 
+  const categories =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
   console.log("..", menu);
+  console.log("total items", categories);
 
   return resInfo === null ? (
     <ShimmerUi />
@@ -43,11 +52,19 @@ function RestaurantMenu() {
       <h1>{resInfo.cards[2].card.card.info.name}</h1>
       {/* <h1>{name.title}</h1> */}
       {/* <h2>{cuisines}</h2> */}
-      <ul>
+      {/* <ul>
         {menu.map((item) => (
           <li key={item.dish.info.id}>{item.dish.info.name}</li>
         ))}
-      </ul>
+      </ul> */}
+      {categories.map((category) => {
+        return (
+          <RestaurantCategory
+            key={category?.card?.card?.itemCards?.card?.info?.id}
+            data={category?.card?.card}
+          />
+        );
+      })}
     </div>
   );
 }

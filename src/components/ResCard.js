@@ -19,5 +19,16 @@ const ResCard = (props) => {
     </div>
   );
 };
+// Higher order component
+export const withPromotedLabel = (ResCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="promoted-label">Promoted</label>
+        <ResCard {...props} />
+      </div>
+    );
+  };
+};
 
 export default ResCard;
