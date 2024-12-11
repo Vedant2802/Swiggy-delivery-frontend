@@ -8,6 +8,8 @@ import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import ShimmerUi from "./components/shimmer";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 // import Grocery from "./components/Grocery";
 // import { createBrowserRouter } from "react-router-dom";
 // import { RouterProvider } from "react-router-dom";
@@ -47,11 +49,13 @@ const Grocery = lazy(() => {
 
 const AppLayout = () => {
   return (
-    <div className="app">
-      <Header />
-      {/* <Body /> */}
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <div className="app">
+        <Header />
+        {/* <Body /> */}
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
