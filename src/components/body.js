@@ -38,10 +38,10 @@ const Body = () => {
       json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
 
-    console.log(
-      "<<<<",
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    // console.log(
+    //   "<<<<",
+    //   json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
 
     console.log("<<first>>", json);
   };
@@ -86,7 +86,7 @@ const Body = () => {
                 (res) => res.info.avgRating > 4.5
               );
               setFilteredRestaurants(filteredList);
-              console.log("filteredList", filteredList);
+              // console.log("filteredList", filteredList);
             }}
           >
             Top Rated Restaurants

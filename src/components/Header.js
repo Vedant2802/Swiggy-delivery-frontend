@@ -13,7 +13,8 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
-  const items = useSelector((store) => store.cart.items);
+  const cart = useSelector((store) => store.cart.items);
+  console.log("cart", cart);
 
   console.log("first", loggedInUser);
   return (
@@ -38,7 +39,9 @@ const Header = () => {
             {" "}
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="px-4 font-bold">Cart {0}</li>
+          <li className="px-4 font-bold">
+            <Link to="/cart"> Cart {cart.length}</Link>
+          </li>
           <button
             className="px-4"
             onClick={() => {

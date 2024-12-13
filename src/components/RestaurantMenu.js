@@ -15,8 +15,8 @@ const RestaurantMenu = () => {
   // }, []);
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
-  console.log(">>>", resInfo);
-  console.log("resId", resId);
+  // console.log(">>>", resInfo);
+  // console.log("resId", resId);
   const [showIndex, setShowIndex] = useState(null);
 
   // const fetchMenu = async () => {
@@ -31,7 +31,7 @@ const RestaurantMenu = () => {
   // };
 
   const name = resInfo?.cards[2]?.card?.card?.info?.name;
-  console.log("name", name);
+  // console.log("name", name);
   const menu =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap.REGULAR?.cards[1]?.card?.card
       ?.carousel;
@@ -43,7 +43,7 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  console.log("..", menu);
+  // console.log("..", menu);
   console.log("total items", categories);
 
   return resInfo === null ? (

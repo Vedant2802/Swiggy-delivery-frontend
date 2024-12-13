@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { additems } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
   console.log("item List", items);
   // const [showItemList, setShowitemList] = useState(true);
+  const dispatch = useDispatch();
+  const handleAddItem = (items) => {
+    dispatch(additems(items));
+  };
   return (
     <div className="category-item-list">
       {items.map((item) => (
@@ -16,6 +22,9 @@ const ItemList = ({ items }) => {
               src={CDN_URL + item?.card?.info?.imageId}
               className="w-16 h-16"
             ></img>
+            <div>
+              <button onClick={() => handleAddItem(item)}>Add +</button>
+            </div>
             <span className="py-2">{item?.card?.info?.name}</span>
             <span>
               {" "}

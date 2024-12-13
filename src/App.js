@@ -10,6 +10,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import ShimmerUi from "./components/shimmer";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import { Cart } from "./components/Cart";
 // import Grocery from "./components/Grocery";
 // import { createBrowserRouter } from "react-router-dom";
 // import { RouterProvider } from "react-router-dom";
@@ -88,6 +89,11 @@ const appRouter = createBrowserRouter([
             <Grocery />
           </Suspense>
         ),
+      },
+
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
