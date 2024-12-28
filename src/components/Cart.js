@@ -19,7 +19,6 @@ export const Cart = () => {
         Clear Cart
       </button>
       <div className="m-auto">
-        f
         <ItemList key={cartItems} items={cartItems} />
       </div>
     </div>
