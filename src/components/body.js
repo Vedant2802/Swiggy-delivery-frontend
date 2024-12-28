@@ -77,7 +77,7 @@ const Body = () => {
             search
           </button>
         </div>
-        <div className="search m-4 p-4 flex items-center">
+        <div className="filter m-4 p-4 flex items-center">
           <button
             className="px-4 py-2 bg-gray-100 m-4 rounded-xl"
             onClick={() => {
@@ -114,3 +114,6 @@ const Body = () => {
 };
 
 export default Body;
+
+// So basically after each of Search and filter functionlaity the state change triggers a re render , which renders the
+// body component again , with the particular filteredRestauran Data.
